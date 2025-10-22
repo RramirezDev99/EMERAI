@@ -31,10 +31,9 @@ function App() {
         {/* === COLUMNA CENTRAL: CHATBOX (8/12) === */}
         {/* col-12: Ocupa todo en móvil. col-lg-8: Ocupa 8 columnas en escritorio. */}
         <div className="col-12 col-lg-8 p-0 h-100">
-          <div className="card shadow-lg bg-white bg-opacity-75 h-100">
-            {/* El componente ChatBox ocupa la altura completa de esta tarjeta */}
-            <ChatBox />
-          </div>
+            <div className="card shadow-lg bg-dark bg-opacity-75" style={{ width: '100%', maxWidth: '800px', height: '90vh' }}>
+                <ChatBox />
+            </div>
         </div>
 
         {/* === COLUMNA DERECHA: SHREK (2/12) === */}
