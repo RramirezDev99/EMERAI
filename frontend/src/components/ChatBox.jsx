@@ -81,14 +81,15 @@ const ChatBox = () => {
     // --- Renderizado con Clases de Bootstrap ---
     return (
         <div className="d-flex flex-column h-100">
-            {/* CABECERA (Header) - Ahora con 85% de opacidad */}
-            <div className="card-header bg-primary text-white d-flex align-items-center bg-opacity-85">
+            {/* CABECERA (Header) - Transparencia sutil para ver el fondo */}
+            <div className="card-header bg-primary text-white d-flex align-items-center bg-opacity-90">
                 <BotIcon className="me-2" size={24} />
                 <h5 className="mb-0">Asistente Gemini (Bootstrap)</h5>
             </div>
 
-            {/* HISTORIAL DE MENSAJES - Fondo semitransparente (más visible) */}
-            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-light bg-opacity-75">
+            {/* HISTORIAL DE MENSAJES - Fondo blanco semitransparente */}
+            {/* Usamos bg-white y bg-opacity-90 para contraste y que la imagen de fondo se filtre ligeramente */}
+            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-white bg-opacity-90">
                 <div className="d-flex flex-column w-100">
                     {messages.map((msg, index) => (
                         <div 
@@ -98,8 +99,8 @@ const ChatBox = () => {
                             <div 
                                 className={`p-3 rounded-3 shadow-sm 
                                     ${msg.role === 'user' 
-                                        ? 'bg-success text-white bg-opacity-90' // Burbuja Usuario: Casi sólida para leer bien
-                                        : 'bg-white border text-dark bg-opacity-90' // Burbuja AI: Casi sólida para leer bien
+                                        ? 'bg-success text-white bg-opacity-95' // Burbuja Usuario: Casi opaca para leer
+                                        : 'bg-white border text-dark bg-opacity-95' // Burbuja AI: Casi opaca para leer
                                     }
                                 `}
                                 style={{ maxWidth: '75%' }}
@@ -112,7 +113,7 @@ const ChatBox = () => {
                 </div>
             </div>
 
-            {/* ÁREA DE ENTRADA (Input) - Casi sólida (95% de opacidad) para la escritura */}
+            {/* ÁREA DE ENTRADA (Input) - Transparencia alta para legibilidad del input */}
             <div className="card-footer bg-white p-3 bg-opacity-95">
                 <form onSubmit={handleSendMessage} className="d-flex">
                     <input

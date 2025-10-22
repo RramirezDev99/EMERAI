@@ -58,18 +58,16 @@
 
 /* ... (Todos tus estilos anteriores) ... */
 
-#app-container {
-    /* RUTA CORREGIDA: Salimos de src/ y entramos de nuevo a assets/ 
-       (Depende de dónde esté App.css, si está en src/, usa la ruta de abajo).
-    */
-    background-image: url('./assets/bg1.png'); /* Ruta más común para archivos en la misma carpeta raíz (src/) */
-    
-    /* Si el CSS no encuentra la imagen con './assets/bg1.png', prueba con esta ruta: */
-    /* background-image: url('../assets/bg1.png'); */
+/* frontend/src/App.css */
 
-    background-size: cover;       
-    background-position: center;  
-    background-repeat: no-repeat; 
-    background-attachment: fixed; 
-    min-height: 100vh;
+/* ... otros estilos ... */
+
+#app-container {
+    /* RUTA DE TU IMAGEN: Ajusta si es necesario (ej: url('./assets/bg1.png')) */
+    background-image: url('./assets/bg1.png'); 
+    background-size: cover;       /* Cubre toda la página */
+    background-position: center;  /* Centra la imagen */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Asegura que la imagen se mantenga al hacer scroll */
+    min-height: 100vh;            /* Ocupa el 100% de la altura de la vista */
 }
