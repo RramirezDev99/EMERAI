@@ -77,17 +77,17 @@ const ChatBox = () => {
         }
     };
 
-    // --- Renderizado con Clases de Bootstrap (TEMA OSCURO) ---
+    // --- Renderizado con Clases de Bootstrap (TEMA OSCURO CORREGIDO) ---
     return (
         <div className="d-flex flex-column h-100">
-            {/* CABECERA (Header) - Fondo oscuro y texto blanco */}
+            {/* CABECERA (Header) - bg-dark es un gris más profundo */}
             <div className="card-header bg-dark text-white d-flex align-items-center bg-opacity-90">
                 <BotIcon className="me-2" size={24} />
                 <h5 className="mb-0">Asistente Gemini (Dark Mode)</h5>
             </div>
 
-            {/* HISTORIAL DE MENSAJES - Fondo muy oscuro y semitransparente */}
-            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-secondary bg-opacity-90">
+            {/* HISTORIAL DE MENSAJES - Fondo de la conversación: Usamos bg-dark */}
+            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-dark bg-opacity-90">
                 <div className="d-flex flex-column w-100">
                     {messages.map((msg, index) => (
                         <div 
@@ -97,8 +97,8 @@ const ChatBox = () => {
                             <div 
                                 className={`p-3 rounded-3 shadow-sm 
                                     ${msg.role === 'user' 
-                                        ? 'bg-primary text-white bg-opacity-95' // Usuario: Azul/Primario para diferenciar
-                                        : 'bg-dark border text-white bg-opacity-95' // AI: Fondo oscuro con texto blanco
+                                        ? 'bg-primary text-white bg-opacity-95' // Usuario: Azul/Primario
+                                        : 'bg-secondary border text-white bg-opacity-95' // AI: Fondo secundario (gris oscuro)
                                     }
                                 `}
                                 style={{ maxWidth: '75%' }}
@@ -111,8 +111,8 @@ const ChatBox = () => {
                 </div>
             </div>
 
-            {/* ÁREA DE ENTRADA (Input) - Fondo oscuro para el pie de página */}
-            <div className="card-footer bg-secondary p-3 bg-opacity-95">
+            {/* ÁREA DE ENTRADA (Input) - Pie de página oscuro */}
+            <div className="card-footer bg-dark p-3 bg-opacity-95">
                 <form onSubmit={handleSendMessage} className="d-flex">
                     <input
                         type="text"
@@ -120,7 +120,7 @@ const ChatBox = () => {
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={isLoading ? "Esperando respuesta..." : "Escribe tu mensaje aquí..."}
                         // Clases para input oscuro
-                        className="form-control me-2 bg-dark text-white border-secondary"
+                        className="form-control me-2 bg-secondary text-white border-secondary" // El input tiene bg-secondary
                         disabled={isLoading} 
                     />
                     <button

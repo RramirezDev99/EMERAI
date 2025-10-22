@@ -13,12 +13,10 @@ function App() {
     <div id="app-container" className="d-flex justify-content-center align-items-center min-vh-100 p-3">
       
       {/* Nuevo Contenedor de Fila (Row) para el contenido */}
-      {/* max-w-xl para un ancho cómodo. h-100 asegura que la fila ocupe el 90vh del padre */}
       <div className="row w-100 gx-4 justify-content-center" style={{ maxWidth: '1000px', height: '90vh' }}>
         
-        {/* === COLUMNA IZQUIERDA: SHREK (3/12) === */}
-        {/* d-none d-lg-flex: Oculta en móvil/tablet. Usa d-flex para forzar la alineación interna. */}
-        {/* align-items-end: ¡CLAVE! Alinea el contenido (la imagen) a la parte inferior del div. */}
+        {/* === COLUMNA IZQUIERDA: SHREK (Solo visible en LG y alineado abajo) === */}
+        {/* d-none d-lg-flex: Oculta en móvil/tablet. Solo visible en escritorio (lg). */}
         <div className="col-lg-3 d-none d-lg-flex p-0 align-items-end justify-content-center h-100">
           <img 
             src={shrekImage} 
@@ -29,10 +27,10 @@ function App() {
         </div>
 
         {/* === COLUMNA CENTRAL: CHATBOX (9/12) === */}
-        {/* col-12: Ocupa todo en móvil. col-lg-9: Ocupa 9 columnas en escritorio. */}
+        {/* col-12: Ocupa todo el ancho en móvil/tablet. col-lg-9: Ocupa 9 columnas en escritorio. */}
         <div className="col-12 col-lg-9 p-0 h-100">
+          {/* Contenedor principal del chat: Tema oscuro y semitransparente */}
           <div className="card shadow-lg bg-dark bg-opacity-75 h-100">
-            {/* El componente ChatBox ocupa la altura completa de esta tarjeta */}
             <ChatBox />
           </div>
         </div>
