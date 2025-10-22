@@ -6,9 +6,9 @@ import MarkdownMessage from './MarkdownMessage';
 
 
 const ChatBox = () => {
-    // Definición de estados
+    // Definición de estados (sin cambios)
     const [messages, setMessages] = useState([
-        { role: 'ai', text: '¡Hola! Soy EmerAI, tu asistente. Ya tengo un diseño semitransparente con Bootstrap. ¿En qué podemos mejorar tu portfolio hoy?.' },
+        { role: 'ai', text: '¡Hola! Soy EmerAI. El chat ahora está en modo oscuro. ¿Qué colores te gustaría usar en tu portfolio?' },
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); 
@@ -37,7 +37,6 @@ const ChatBox = () => {
         setMessages((prev) => [...prev, newUserMessage, { role: 'ai', text: '' }]); 
         
         try {
-            // Llamada al Backend (Ruta relativa correcta para Vercel)
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -48,7 +47,7 @@ const ChatBox = () => {
                 throw new Error('Error en el servidor o la respuesta no es un stream.');
             }
 
-            // Manejo del Streaming
+            // Manejo del Streaming (sin cambios)
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
             let aiText = '';
@@ -78,18 +77,17 @@ const ChatBox = () => {
         }
     };
 
-    // --- Renderizado con Clases de Bootstrap ---
+    // --- Renderizado con Clases de Bootstrap (TEMA OSCURO) ---
     return (
         <div className="d-flex flex-column h-100">
-            {/* CABECERA (Header) - Transparencia sutil para ver el fondo */}
-            <div className="card-header bg-primary text-white d-flex align-items-center bg-opacity-90">
+            {/* CABECERA (Header) - Fondo oscuro y texto blanco */}
+            <div className="card-header bg-dark text-white d-flex align-items-center bg-opacity-90">
                 <BotIcon className="me-2" size={24} />
-                <h5 className="mb-0">Asistente Gemini (Bootstrap)</h5>
+                <h5 className="mb-0">Asistente Gemini (Dark Mode)</h5>
             </div>
 
-            {/* HISTORIAL DE MENSAJES - Fondo blanco semitransparente */}
-            {/* Usamos bg-white y bg-opacity-90 para contraste y que la imagen de fondo se filtre ligeramente */}
-            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-white bg-opacity-90">
+            {/* HISTORIAL DE MENSAJES - Fondo muy oscuro y semitransparente */}
+            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-secondary bg-opacity-90">
                 <div className="d-flex flex-column w-100">
                     {messages.map((msg, index) => (
                         <div 
@@ -99,8 +97,8 @@ const ChatBox = () => {
                             <div 
                                 className={`p-3 rounded-3 shadow-sm 
                                     ${msg.role === 'user' 
-                                        ? 'bg-success text-white bg-opacity-95' // Burbuja Usuario: Casi opaca para leer
-                                        : 'bg-white border text-dark bg-opacity-95' // Burbuja AI: Casi opaca para leer
+                                        ? 'bg-primary text-white bg-opacity-95' // Usuario: Azul/Primario para diferenciar
+                                        : 'bg-dark border text-white bg-opacity-95' // AI: Fondo oscuro con texto blanco
                                     }
                                 `}
                                 style={{ maxWidth: '75%' }}
@@ -113,15 +111,16 @@ const ChatBox = () => {
                 </div>
             </div>
 
-            {/* ÁREA DE ENTRADA (Input) - Transparencia alta para legibilidad del input */}
-            <div className="card-footer bg-white p-3 bg-opacity-95">
+            {/* ÁREA DE ENTRADA (Input) - Fondo oscuro para el pie de página */}
+            <div className="card-footer bg-secondary p-3 bg-opacity-95">
                 <form onSubmit={handleSendMessage} className="d-flex">
                     <input
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder={isLoading ? "Esperando respuesta..." : "Escribe tu mensaje aquí..."}
-                        className="form-control me-2"
+                        // Clases para input oscuro
+                        className="form-control me-2 bg-dark text-white border-secondary"
                         disabled={isLoading} 
                     />
                     <button
