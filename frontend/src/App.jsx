@@ -3,8 +3,7 @@
 import ChatBox from './components/ChatBox';
 import './App.css'; 
 
-// IMPORTA LAS IMÁGENES NUEVAS Y ASÍGnales NOMBRES ÚNICOS
-import sonicImage from './assets/sonic.png'; 
+// IMPORTA SOLO LA IMAGEN DE SHREK
 import shrekImage from './assets/shrek.png'; 
 
 
@@ -13,39 +12,32 @@ function App() {
     // Contenedor principal: El fondo de imagen global está en el ID
     <div id="app-container" className="d-flex justify-content-center align-items-center min-vh-100 p-3">
       
-      {/* Nuevo Contenedor de Fila (Row) para las tres columnas */}
-      {/* row w-100 gx-0: Fila, 100% de ancho, sin margen entre columnas */}
-      <div className="row w-100 gx-0 justify-content-center" style={{ maxWidth: '1200px', height: '90vh' }}>
+      {/* Nuevo Contenedor de Fila (Row) para el contenido */}
+      {/* max-w-xl para un ancho cómodo. h-100 asegura que la fila ocupe el 90vh del padre */}
+      <div className="row w-100 gx-4 justify-content-center" style={{ maxWidth: '1000px', height: '90vh' }}>
         
-        {/* === COLUMNA IZQUIERDA: SONIC (2/12) === */}
-        {/* d-none d-lg-block: Oculta en móvil/tablet, visible en escritorio (lg) */}
-        <div className="col-lg-2 d-none d-lg-block p-0 d-flex align-items-center justify-content-center">
+        {/* === COLUMNA IZQUIERDA: SHREK (3/12) === */}
+        {/* d-none d-lg-flex: Oculta en móvil/tablet. Usa d-flex para forzar la alineación interna. */}
+        {/* align-items-end: ¡CLAVE! Alinea el contenido (la imagen) a la parte inferior del div. */}
+        <div className="col-lg-3 d-none d-lg-flex p-0 align-items-end justify-content-center h-100">
           <img 
-            src={sonicImage} // Usa la imagen de SONIC
-            alt="Sonic" 
-            className="img-fluid rounded shadow-lg" 
-            style={{ maxHeight: '70%', objectFit: 'contain' }} // Usamos 'contain' para que la imagen se vea completa
-          />
-        </div>
-
-        {/* === COLUMNA CENTRAL: CHATBOX (8/12) === */}
-        {/* col-12: Ocupa todo en móvil. col-lg-8: Ocupa 8 columnas en escritorio. */}
-        <div className="col-12 col-lg-8 p-0 h-100">
-            <div className="card shadow-lg bg-dark bg-opacity-75" style={{ width: '100%', maxWidth: '800px', height: '90vh' }}>
-                <ChatBox />
-            </div>
-        </div>
-
-        {/* === COLUMNA DERECHA: SHREK (2/12) === */}
-        {/* Oculta en móvil/tablet, visible solo en escritorio grande (lg) */}
-        <div className="col-lg-2 d-none d-lg-block p-0 d-flex align-items-center justify-content-center">
-          <img 
-            src={shrekImage} // Usa la imagen de SHREK
+            src={shrekImage} 
             alt="Shrek" 
-            className="img-fluid rounded shadow-lg" 
-            style={{ maxHeight: '70%', objectFit: 'contain' }} // Usamos 'contain' para que la imagen se vea completa
+            className="img-fluid" 
+            style={{ maxHeight: '90%', objectFit: 'contain' }} 
           />
         </div>
+
+        {/* === COLUMNA CENTRAL: CHATBOX (9/12) === */}
+        {/* col-12: Ocupa todo en móvil. col-lg-9: Ocupa 9 columnas en escritorio. */}
+        <div className="col-12 col-lg-9 p-0 h-100">
+          <div className="card shadow-lg bg-dark bg-opacity-75 h-100">
+            {/* El componente ChatBox ocupa la altura completa de esta tarjeta */}
+            <ChatBox />
+          </div>
+        </div>
+
+        {/* === COLUMNA DERECHA ELIMINADA === */}
 
       </div> {/* Fin de la Fila (row) */}
       

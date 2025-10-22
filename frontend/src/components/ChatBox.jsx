@@ -8,7 +8,7 @@ import MarkdownMessage from './MarkdownMessage';
 const ChatBox = () => {
     // Definición de estados (sin cambios)
     const [messages, setMessages] = useState([
-        { role: 'ai', text: '¡Hola! Soy EmerAI. El chat ahora está en modo oscuro. ¿Qué colores te gustaría usar en tu portfolio?' },
+        { role: 'ai', text: '¡Hola! Soy Shrek. puto el que lo lea' },
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); 
