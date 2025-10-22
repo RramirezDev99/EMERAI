@@ -1,53 +1,10 @@
-/* frontend/src/App.css */
-
-/*
-   ==============================================================
-   PASO 1: FORZAR ALTURA TOTAL Y RESTABLECER ESTILOS GLOBALES
-   ==============================================================
-*/
-html, body {
-  /* Ocupan el 100% del alto y ancho de la ventana del navegador */
-  height: 100%; 
-  width: 100%;
-  margin: 0; 
-  padding: 0;
-  overflow: auto; /* Permite scroll si el contenido es más largo que la pantalla */
-}
-
-/* El #root ya no necesita max-width, ya que el contenedor del chat se centra */
 #root {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0; /* Quitamos el padding global para que el fondo cubra bien */
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
   text-align: center;
 }
 
-/*
-   ==============================================================
-   PASO 2: ESTILOS PARA EL FONDO GLOBAL (#app-container)
-   ==============================================================
-*/
-#app-container {
-    /* RUTA CORREGIDA: Asumimos que esta es la ruta correcta desde el CSS. */
-    background-image: url('./assets/bg1.png'); 
-    
-    /* Claves para el fondo: */
-    background-size: cover;       /* Clave: Asegura que la imagen cubra toda el área */
-    background-position: center;  /* Centra la imagen en el fondo */
-    background-repeat: no-repeat; /* Clave: Evita que la imagen se repita */
-    background-attachment: fixed; /* Mantiene la imagen fija al hacer scroll */
-    
-    /* Asegura que el contenedor ocupe la altura total de la vista */
-    min-height: 100vh;
-}
-
-
-/*
-   ==============================================================
-   PASO 3: ESTILOS ORIGINALES DE VITE (Mantener)
-   ==============================================================
-*/
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -82,4 +39,35 @@ html, body {
 
 .read-the-docs {
   color: #888;
+}
+
+
+
+/* ... (El código anterior de logos y animaciones permanece igual) ... */
+
+/*
+   --------------------------------------------------------------
+   NUEVOS ESTILOS PARA EL FONDO DE IMAGEN Y EL CONTENEDOR PRINCIPAL
+   --------------------------------------------------------------
+*/
+
+/* El ID 'app-container' es el div principal de la aplicación que definimos 
+   en App.jsx para aplicar la imagen de fondo.
+*/
+/* frontend/src/App.css */
+
+/* ... (Todos tus estilos anteriores) ... */
+
+/* frontend/src/App.css */
+
+/* ... otros estilos ... */
+
+#app-container {
+    /* RUTA DE TU IMAGEN: Ajusta si es necesario (ej: url('./assets/bg1.png')) */
+    background-image: url('./assets/bg1.png'); 
+    background-size: cover;       /* Cubre toda la página */
+    background-position: center;  /* Centra la imagen */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Asegura que la imagen se mantenga al hacer scroll */
+    min-height: 100vh;            /* Ocupa el 100% de la altura de la vista */
 }
