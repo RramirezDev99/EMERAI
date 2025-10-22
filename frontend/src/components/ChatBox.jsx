@@ -19,7 +19,7 @@ const ChatBox = () => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     
-    // Lógica de Conexión y Streaming (Sin cambios)
+    // Lógica de Conexión y Streaming
     const handleSendMessage = async (e) => {
         e.preventDefault();
         const userMessage = input.trim();
@@ -37,13 +37,15 @@ const ChatBox = () => {
         setMessages((prev) => [...prev, newUserMessage, { role: 'ai', text: '' }]); 
         
         try {
-            const response = await fetch('/api/chat', {
+            // CORRECCIÓN CRUCIAL: Usamos la ruta relativa /api/chat para que Vercel redirija al backend
+            const response = await fetch('/api/chat', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ history: currentHistory, newMessage: userMessage }),
             });
 
             if (!response.ok || !response.body) {
+                // Aquí se activa el error si la clave API de Vercel falla.
                 throw new Error('Error en el servidor o la respuesta no es un stream.');
             }
 
@@ -71,7 +73,8 @@ const ChatBox = () => {
 
         } catch (error) {
             console.error("Error de comunicación:", error);
-            setMessages((prev) => [...prev, { role: 'ai', text: 'Lo siento, hubo un error de conexión.' }]);
+            // Mensaje de error para el usuario
+            setMessages((prev) => [...prev, { role: 'ai', text: 'Lo siento, hubo un error de conexión. (Revisa la clave API en Vercel).' }]);
         } finally {
             setIsLoading(false);
         }
@@ -80,7 +83,7 @@ const ChatBox = () => {
     // --- Renderizado con Clases de Bootstrap (TEMA OSCURO CORREGIDO) ---
     return (
         <div className="d-flex flex-column h-100">
-            {/* CABECERA (Header) - bg-dark es un gris más profundo */}
+            {/* CABECERA (Header) */}
             <div className="card-header bg-dark text-white d-flex align-items-center bg-opacity-90">
                 <BotIcon className="me-2" size={24} />
                 <h5 className="mb-0">Asistente Gemini (Dark Mode)</h5>
