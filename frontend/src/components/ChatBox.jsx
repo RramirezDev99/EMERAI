@@ -1,4 +1,5 @@
 // frontend/src/components/ChatBox.jsx
+
 import { useState, useRef, useEffect } from 'react';
 import { SendIcon, BotIcon, Loader2 } from 'lucide-react'; 
 import MarkdownMessage from './MarkdownMessage'; 
@@ -7,7 +8,7 @@ import MarkdownMessage from './MarkdownMessage';
 const ChatBox = () => {
     // Definición de estados
     const [messages, setMessages] = useState([
-        { role: 'ai', text: '¡Hi im EmerAI and this was a personal proyect built by ruben to create a chatbot using Gemini API, how can i help you today?.' },
+        { role: 'ai', text: '¡Hola! Soy EmerAI, tu asistente. Ya tengo un diseño semitransparente con Bootstrap. ¿En qué podemos mejorar tu portfolio hoy?.' },
     ]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false); 
@@ -18,7 +19,7 @@ const ChatBox = () => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
     
-    // Lógica de Conexión y Streaming (Paso 6)
+    // Lógica de Conexión y Streaming (Sin cambios)
     const handleSendMessage = async (e) => {
         e.preventDefault();
         const userMessage = input.trim();
@@ -36,7 +37,7 @@ const ChatBox = () => {
         setMessages((prev) => [...prev, newUserMessage, { role: 'ai', text: '' }]); 
         
         try {
-            // Llamada al Backend (debe estar corriendo en el puerto 3000)
+            // Llamada al Backend (Ruta relativa correcta para Vercel)
             const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -80,14 +81,14 @@ const ChatBox = () => {
     // --- Renderizado con Clases de Bootstrap ---
     return (
         <div className="d-flex flex-column h-100">
-            {/* CABECERA (Header) */}
-            <div className="card-header bg-primary text-white d-flex align-items-center">
+            {/* CABECERA (Header) - Ahora con 85% de opacidad */}
+            <div className="card-header bg-primary text-white d-flex align-items-center bg-opacity-85">
                 <BotIcon className="me-2" size={24} />
                 <h5 className="mb-0">Asistente Gemini (Bootstrap)</h5>
             </div>
 
-            {/* HISTORIAL DE MENSAJES */}
-            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-light">
+            {/* HISTORIAL DE MENSAJES - Fondo semitransparente (más visible) */}
+            <div className="card-body overflow-auto flex-grow-1 d-flex flex-column p-3 bg-light bg-opacity-75">
                 <div className="d-flex flex-column w-100">
                     {messages.map((msg, index) => (
                         <div 
@@ -97,8 +98,8 @@ const ChatBox = () => {
                             <div 
                                 className={`p-3 rounded-3 shadow-sm 
                                     ${msg.role === 'user' 
-                                        ? 'bg-success text-white' // Fondo verde para usuario
-                                        : 'bg-white border text-dark' // Fondo blanco para AI
+                                        ? 'bg-success text-white bg-opacity-90' // Burbuja Usuario: Casi sólida para leer bien
+                                        : 'bg-white border text-dark bg-opacity-90' // Burbuja AI: Casi sólida para leer bien
                                     }
                                 `}
                                 style={{ maxWidth: '75%' }}
@@ -111,8 +112,8 @@ const ChatBox = () => {
                 </div>
             </div>
 
-            {/* ÁREA DE ENTRADA (Input) */}
-            <div className="card-footer bg-white p-3">
+            {/* ÁREA DE ENTRADA (Input) - Casi sólida (95% de opacidad) para la escritura */}
+            <div className="card-footer bg-white p-3 bg-opacity-95">
                 <form onSubmit={handleSendMessage} className="d-flex">
                     <input
                         type="text"

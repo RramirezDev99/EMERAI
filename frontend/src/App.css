@@ -40,3 +40,36 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+/* ... (El código anterior de logos y animaciones permanece igual) ... */
+
+/*
+   --------------------------------------------------------------
+   NUEVOS ESTILOS PARA EL FONDO DE IMAGEN Y EL CONTENEDOR PRINCIPAL
+   --------------------------------------------------------------
+*/
+
+/* El ID 'app-container' es el div principal de la aplicación que definimos 
+   en App.jsx para aplicar la imagen de fondo.
+*/
+/* frontend/src/App.css */
+
+/* ... (Todos tus estilos anteriores) ... */
+
+#app-container {
+    /* RUTA CORREGIDA: Salimos de src/ y entramos de nuevo a assets/ 
+       (Depende de dónde esté App.css, si está en src/, usa la ruta de abajo).
+    */
+    background-image: url('./assets/bg1.png'); /* Ruta más común para archivos en la misma carpeta raíz (src/) */
+    
+    /* Si el CSS no encuentra la imagen con './assets/bg1.png', prueba con esta ruta: */
+    /* background-image: url('../assets/bg1.png'); */
+
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    min-height: 100vh;
+}

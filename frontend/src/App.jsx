@@ -1,14 +1,16 @@
 // frontend/src/App.jsx
-// Quita todas las importaciones innecesarias de logos y CSS
-import ChatBox from '/src/components/ChatBox.jsx';
+
+import ChatBox from './components/ChatBox';
+import './App.css'; // Asegúrate de que este archivo exista para el CSS personalizado
 
 function App() {
   return (
-    // Usa clases de Bootstrap para centrar el contenido y ocupar toda la vista (min-vh-100)
-    <div className="container-fluid d-flex justify-content-center align-items-center bg-light min-vh-100 p-3">
+    // Contenedor principal: min-vh-100 para cubrir toda la altura.
+    // Usamos el ID 'app-container' para aplicar la imagen de fondo en App.css
+    <div id="app-container" className="d-flex justify-content-center align-items-center min-vh-100 p-3">
       
-      {/* Contenedor del Chatbox: card para estética, sombra y dimensiones controladas */}
-      <div className="card shadow-lg" style={{ width: '100%', maxWidth: '800px', height: '90vh' }}>
+      {/* Contenedor del Chatbox - Ahora con un fondo blanco semitransparente */}
+      <div className="card shadow-lg bg-white bg-opacity-75" style={{ width: '100%', maxWidth: '800px', height: '90vh' }}>
         <ChatBox />
       </div>
       
