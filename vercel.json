@@ -14,5 +14,7 @@
       "src": "index.html", 
       "use": "@vercel/static-build"
     }
-  ]
+  ],
+  "installCommand": "npm install --prefix backend && npm install", 
+  "buildCommand": "npm run build"
 }
